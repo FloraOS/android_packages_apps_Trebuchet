@@ -94,6 +94,7 @@ public class WidgetsBottomSheet extends BaseWidgetSheet {
             removeOnLayoutChangeListener(mLayoutChangeListenerToShowTips);
             return;
         }
+	//FIXME: app info sheet may have null for widgets_table, so check it is not
         View viewForTip = ((ViewGroup) ((TableLayout) findViewById(R.id.widgets_table))
                                     .getChildAt(0)).getChildAt(0);
         if (showEducationTipOnViewIfPossible(viewForTip) != null) {
