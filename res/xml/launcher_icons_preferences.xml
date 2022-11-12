@@ -35,7 +35,6 @@
         android:persistent="true"
         android:max="150"
         android:min="50"
-        settings:units="%"
         android:defaultValue="100" />
 
     <com.android.launcher3.settings.preferences.CustomSeekBarPreference
@@ -44,7 +43,6 @@
         android:persistent="true"
         android:max="150"
         android:min="50"
-        settings:units="%"
         android:defaultValue="100" />
 
     <SwitchPreferenceCompat

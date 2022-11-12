@@ -199,10 +199,17 @@
     <string name="app_info_last_update">Last update</string>
     <string name="app_info_version">Version</string>
     <string name="app_info_more">More</string>
-
+    <string name="app_info_source_unknown">Unknown</string>
+     
     <!-- Icon pack -->
     <string name="icon_pack_title">Icon pack</string>
     <string name="icon_pack_default_label">Default</string>
     <string name="icon_pack_add">Install more</string>
     <string name="icon_pack_no_market">There\'s no available app store</string>
+
+    <!-- Store intent query -->
+    <string name="market_search_intent" translatable="false">market://search?c=apps</string>
+
+
 </resources>
+

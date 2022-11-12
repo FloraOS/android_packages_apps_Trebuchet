@@ -284,7 +284,7 @@ public class SettingsIcons extends CollapsingToolbarBaseActivity
                     mIconPackPref.setOnReloadListener(IconPackPrefSetter::new);
                     mIconPackPref.setIcon(getPackageIcon(IconDatabase.getGlobal(getActivity())));
                     mIconPackPref.setOnPreferenceChangeListener((pref, val) -> {
-                        IconDatabase.clearAll(getActivity());
+                        //IconDatabase.clearAll(getActivity());
                         IconDatabase.setGlobal(getActivity(), (String) val);
                         mIconPackPref.setIcon(getPackageIcon((String) val));
                         AppReloader.get(getActivity()).reload();
