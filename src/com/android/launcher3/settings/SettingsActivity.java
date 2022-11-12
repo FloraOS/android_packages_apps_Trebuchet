@@ -270,8 +270,6 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
             }
             return null;
         }
-=======
->>>>>>> 5d12e37f52 (Launcher3: Switch to icon pack theming preview)
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {

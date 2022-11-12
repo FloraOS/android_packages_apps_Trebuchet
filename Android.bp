@@ -333,7 +333,18 @@ android_library {
         "SettingsLib",
         "view_capture",
         "animationlib",
-        "SettingsLib",
+        "SystemUI-statsd",
+        "launcher-testing-shared",
+        "androidx.lifecycle_lifecycle-common-java8",
+        "androidx.lifecycle_lifecycle-extensions",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "kotlinx_coroutines_android",
+        "kotlinx_coroutines",
+        "com_android_launcher3_flags_lib",
+        "com_android_wm_shell_flags_lib",
+        "dagger2",
+        "jsr330",
+        "com_android_systemui_shared_flags_lib",
         "libGoogleFeed",
         "org.lineageos.platform",
     ],
@@ -341,7 +352,7 @@ android_library {
     sdk_version: "current",
     min_sdk_version: min_launcher3_sdk_version,
     lint: {
-        baseline_filename: "lint-baseline2.xml",
+        baseline_filename: "lint-baseline.xml",
     },
 }
 
