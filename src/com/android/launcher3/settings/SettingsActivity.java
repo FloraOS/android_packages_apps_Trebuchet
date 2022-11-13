@@ -32,6 +32,9 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -59,6 +62,10 @@ import com.android.launcher3.util.DisplayController;
 import com.android.launcher3.util.SettingsCache;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
+import com.android.launcher3.icons.pack.IconPackSettingsActivity;
+import com.android.launcher3.customization.IconDatabase;
+import com.android.launcher3.settings.preference.ReloadingListPreference;
+import com.android.launcher3.util.AppReloader;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 
@@ -263,6 +270,8 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
             }
             return null;
         }
+=======
+>>>>>>> 5d12e37f52 (Launcher3: Switch to icon pack theming preview)
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -287,6 +296,7 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
             super.onSaveInstanceState(outState);
             outState.putBoolean(SAVE_HIGHLIGHTED_KEY, mPreferenceHighlighted);
         }
+
 
         /**
          * Initializes a preference. This is called for every preference. Returning false here
@@ -335,9 +345,21 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
 
                 case KEY_SUGGESTIONS:
                     return LineageUtils.isPackageEnabled(getActivity(), SUGGESTIONS_PACKAGE);
-            }
+                case IconDatabase.KEY_ICON_PACK:
+                    setupIconPackPreference(preference);
+                    return true;
+	    }
 
             return true;
+        }
+
+        private void setupIconPackPreference(Preference preference) {
+            final String pkgLabel = IconDatabase.getGlobalLabel(getActivity());
+            preference.setSummary(pkgLabel);
+            preference.setOnPreferenceClickListener(p -> {
+                startActivity(new Intent(getActivity(), IconPackSettingsActivity.class));
+                return true;
+            });
         }
 
         @Override
