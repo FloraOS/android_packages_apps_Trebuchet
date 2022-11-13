@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -61,8 +62,8 @@ import com.android.launcher3.uioverrides.flags.DeveloperOptionsUI;
 import com.android.launcher3.util.DisplayController;
 import com.android.launcher3.util.Executors;
 import com.android.launcher3.util.SettingsCache;
+import com.android.launcher3.icons.pack.IconPackSettingsActivity;
 import com.android.launcher3.customization.IconDatabase;
-import com.android.launcher3.settings.preference.IconPackPrefSetter;
 import com.android.launcher3.settings.preference.ReloadingListPreference;
 import com.android.launcher3.util.AppReloader;
 
@@ -95,9 +96,6 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
 
     private static final String KEY_SUGGESTIONS = "pref_suggestions";
     private static final String SUGGESTIONS_PACKAGE = "com.google.android.as";
-
-    private static final String KEY_ICON_PACK = "pref_icon_pack";
-
 
     
     @Override
@@ -219,10 +217,12 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
                 }
             }
 
+
             if (getActivity() != null && !TextUtils.isEmpty(getPreferenceScreen().getTitle())) {
                 getActivity().setTitle(getPreferenceScreen().getTitle());
             }
         }
+
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -247,6 +247,7 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
             super.onSaveInstanceState(outState);
             outState.putBoolean(SAVE_HIGHLIGHTED_KEY, mPreferenceHighlighted);
         }
+
 
         /**
          * Initializes a preference. This is called for every preference. Returning false here
@@ -301,31 +302,21 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
 
                 case KEY_SUGGESTIONS:
                     return LineageUtils.isPackageEnabled(getActivity(), SUGGESTIONS_PACKAGE);
-		case KEY_ICON_PACK:
-                    mIconPackPref = (ReloadingListPreference) preference;
-                    mIconPackPref.setValue(IconDatabase.getGlobal(getActivity()));
-                    mIconPackPref.setOnReloadListener(IconPackPrefSetter::new);
-                    mIconPackPref.setIcon(getPackageIcon(IconDatabase.getGlobal(getActivity())));
-                    mIconPackPref.setOnPreferenceChangeListener((pref, val) -> {
-                        IconDatabase.clearAll(getActivity());
-                        IconDatabase.setGlobal(getActivity(), (String) val);
-                        mIconPackPref.setIcon(getPackageIcon((String) val));
-                        AppReloader.get(getActivity()).reload();
-                        return true;
-                    });
-            }
+                case IconDatabase.KEY_ICON_PACK:
+                    setupIconPackPreference(preference);
+                    return true;
+	    }
 
             return true;
         }
 
-	private Drawable getPackageIcon(String pkgName) {
-            Drawable icon = getContext().getResources().
-                              getDrawable(com.android.internal.R.drawable.sym_def_app_icon);
-            try {
-                 icon = getContext().getPackageManager().
-                              getApplicationIcon(pkgName);
-            } catch (PackageManager.NameNotFoundException e) {  }
-            return icon;
+        private void setupIconPackPreference(Preference preference) {
+            final String pkgLabel = IconDatabase.getGlobalLabel(getActivity());
+            preference.setSummary(pkgLabel);
+            preference.setOnPreferenceClickListener(p -> {
+                startActivity(new Intent(getActivity(), IconPackSettingsActivity.class));
+                return true;
+            });
         }
 
         @Override
