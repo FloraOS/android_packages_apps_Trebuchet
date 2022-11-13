@@ -45,10 +45,6 @@
         launcher:logIdOn="613"
         launcher:logIdOff="614" />
 
-    <!--
-      LAUNCHER_HOME_SCREEN_ROTATION_ENABLED(615)
-      LAUNCHER_HOME_SCREEN_ROTATION_DISABLED(616)
-    -->
     <SwitchPreferenceCompat
         android:key="pref_allowRotation"
         android:title="@string/allow_rotation_title"
