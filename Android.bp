@@ -329,6 +329,29 @@ android_library {
         "//frameworks/libs/systemui:view_capture",
         "//frameworks/libs/systemui:animationlib",
         "//frameworks/libs/systemui:contextualeducationlib",
+        "iconloader_base",
+        "SettingsLib",
+        "view_capture",
+        "animationlib",
+        "SettingsLib",
+        "libGoogleFeed",
+        "org.lineageos.platform",
+    ],
+    manifest: "AndroidManifest-common.xml",
+    sdk_version: "current",
+    min_sdk_version: min_launcher3_sdk_version,
+    lint: {
+        baseline_filename: "lint-baseline2.xml",
+    },
+}
+
+//
+// Build rule for Launcher3 dependencies lib.
+//
+android_library {
+    name: "Launcher3CommonDepsLib",
+    srcs: ["src_build_config/**/*.java"],
+    static_libs: [
         "SystemUI-statsd",
         "launcher-testing-shared",
         "androidx.lifecycle_lifecycle-common-java8",

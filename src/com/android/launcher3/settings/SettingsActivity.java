@@ -60,6 +60,8 @@ import com.android.launcher3.util.SettingsCache;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
+
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */
