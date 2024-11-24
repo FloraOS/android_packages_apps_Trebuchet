@@ -11,8 +11,7 @@ import static com.android.launcher3.util.Executors.MAIN_EXECUTOR;
 import static com.android.launcher3.util.Executors.THREAD_POOL_EXECUTOR;
 
 @SuppressWarnings("unused")
-public class ReloadingListPreference extends ListPreference
-        implements SettingsIcons.OnResumePreferenceCallback {
+public class ReloadingListPreference extends ListPreference {
     public interface OnReloadListener {
         Runnable listUpdater(ReloadingListPreference pref);
     }
