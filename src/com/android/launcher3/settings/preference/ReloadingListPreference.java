@@ -19,7 +19,7 @@ public class ReloadingListPreference extends ListPreference
         Runnable listUpdater(ReloadingListPreference pref);
     }
 
-    private OnReloadListener mOnReloadListener;
+    private OnReloadListener mOnReloadListener = null;
 
     public ReloadingListPreference(Context context) {
         super(context);
@@ -58,14 +58,17 @@ public class ReloadingListPreference extends ListPreference
     }
 
     private void loadEntries(boolean async) {
-        if (mOnReloadListener != null) {
+        async = false;
+	if (mOnReloadListener != null) {
             if (async) {
                 THREAD_POOL_EXECUTOR.execute(
                         () -> MAIN_EXECUTOR.execute(mOnReloadListener.listUpdater(this)));
             } else {
                 mOnReloadListener.listUpdater(this).run();
             }
-        }
+        } else {
+	    throw new RuntimeException("mOnReladListener is not set!");
+	}
     }
 
     void setEntriesWithValues(CharSequence[] entries, CharSequence[] entryValues) {

@@ -16,7 +16,8 @@
 
 <androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:launcher="http://schemas.android.com/apk/res-auto">
+    xmlns:launcher="http://schemas.android.com/apk/res-auto"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.launcher">
 
     <SwitchPreference
         android:defaultValue="false"
@@ -45,7 +46,12 @@
         launcher:logIdOn="613"
         launcher:logIdOff="614" />
 
-    <!--
+   <com.android.launcher3.settings.preference.ReloadingListPreference
+        android:key="pref_icon_pack"
+	android:title="@string/app_info_icon_pack"
+	android:persistent="true" />
+
+   <!--
       LAUNCHER_HOME_SCREEN_ROTATION_ENABLED(615)
       LAUNCHER_HOME_SCREEN_ROTATION_DISABLED(616)
     -->
