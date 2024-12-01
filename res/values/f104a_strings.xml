@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2016-2023 crDroid Android Project
+     Copyright (C) 2024 FloraOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,30 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Taskbar -->
-    <string name="pref_allow_phone_taskbar_title">Use taskbar</string>
-    <string name="pref_allow_phone_taskbar_summary">For opening and switching apps anywhere</string>
-
-    <!-- Hotseat searchbar -->
-    <string name="label_search">Search</string>
-    <string name="label_lens">Google Lens</string>
-    <string name="label_voice_search">Voice search</string>
-    <string name="dock_search_title">Google search bar</string>
-    <string name="dock_search_summary">Search bar in the bottom dock</string>
-    <string name="dock_theme_title">Themed icons</string>
-    <string name="dock_theme_summary">Use themed icons for search bar</string>
-    <string name="search_radius_title">Corner radius</string>
-
-    <!-- Hotseat Background -->
-    <string name="hotseat_bg_title">Hotseat background</string>
-    <string name="hotseat_bg_summary">Add translucent background to the app dock</string>
-
-    <!-- Background opacity -->
-    <string name="background_opacity_title">Background opacity</string>
-    
-    <!-- Shake Clear Recents -->
-    <string name="recents_shake_clear_all_title">Shake phone to clear all tasks</string>
-
     <!-- AppInfo -->
     <string name="app_info_version_value" translatable="false">%1$s (%2$d)</string>
     <string name="placeholder_string" translatable="false">Loading...</string> <!-- Used for preference height loading. -->
